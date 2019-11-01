@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name="my_persistence_unit" transaction-type="JTA">
+      <jta-data-source>jdbc/cine</jta-data-source>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Pelicula</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Orden</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.OrdenConsumible</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sala</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Factura</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.AtributoSala</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.AsientoSala</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Director</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.CaracteristicaSala</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Funcion</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Asiento</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Genero</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Pago</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.CaracteristicaFuncion</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.CaracteristicaAsiento</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.AtributoAsiento</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Descuento</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.TipoPago</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Clasificacion</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.TipoDescuento</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.AtributoFuncion</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.MenuConsumible</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Boleto</class>
+    <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>
