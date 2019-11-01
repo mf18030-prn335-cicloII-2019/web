@@ -15,7 +15,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.control.AbstractFacade;
-import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.control.SucursalFacade;
+import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.control.CaracteristicaAsientoFacade;
+import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.CaracteristicaAsiento;
 import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal;
 
 /**
@@ -23,30 +24,31 @@ import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal;
  * @author melvin
  */
 
-@Named(value = "sucursalBean")
+@Named(value = "caracteristicaAsientoBean")
 @ViewScoped
-public class SucursalBean extends BackingBean<Sucursal> implements Serializable {
+public class CaracteristicaAsientoBean extends BackingBean<CaracteristicaAsiento> implements Serializable {
     @Inject
-    private SucursalFacade sucursalFacade;
-    private Sucursal sucursal;
-    private List<Sucursal> sucursalList;
+    private CaracteristicaAsientoFacade caracAsientoFacade;
+    private CaracteristicaAsiento caracAsiento;
+    private List<CaracteristicaAsiento> caracAsientoList;
 
-    public Sucursal getSucursal() {
-        return sucursal;
+    public CaracteristicaAsiento getCaracAsiento() {
+        return caracAsiento;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setCaracAsiento(CaracteristicaAsiento caracAsiento) {
+        this.caracAsiento = caracAsiento;
+    }
+
+    public List<CaracteristicaAsiento> getCaracAsientoList() {
+        return caracAsientoList;
+    }
+
+    public void setCaracAsientoList(List<CaracteristicaAsiento> caracAsientoList) {
+        this.caracAsientoList = caracAsientoList;
     }
 
     
-    public List<Sucursal> getSucursalList() {
-        return sucursalList;
-    }
-
-    public void setSucursalList(List<Sucursal> sucursalList) {
-        this.sucursalList = sucursalList;
-    }
 
     
     
@@ -60,26 +62,26 @@ public class SucursalBean extends BackingBean<Sucursal> implements Serializable 
     
     
     public void iniciarRelaciones(){
-        if(sucursalFacade !=null){
-            sucursalList=sucursalFacade.findAll();
+        if(caracAsientoFacade !=null){
+            caracAsientoList=caracAsientoFacade.findAll();
         }
     }
 
     @Override
-    public Object clavePorDatos(Sucursal object) {
+    public Object clavePorDatos(CaracteristicaAsiento object) {
         if (object != null) {
-            return object.getIdSucursal();
+            return object.getIdCaracteristica();
         }
         return null;
     }
 
     @Override
-    public Sucursal datosPorClave(String rowKey) {
+    public CaracteristicaAsiento datosPorClave(String rowKey) {
         if (rowKey != null && !rowKey.isEmpty()) {
             try {
                 Integer search = new Integer(rowKey);
-                for (Sucursal tu : this.List) {
-                    if (tu.getIdSucursal().compareTo(search) == 0) {
+                for (CaracteristicaAsiento tu : this.List) {
+                    if (tu.getIdCaracteristica().compareTo(search) == 0) {
                         return tu;
                     }
                 }
@@ -91,20 +93,20 @@ public class SucursalBean extends BackingBean<Sucursal> implements Serializable 
     }
 
     @Override
-    protected AbstractFacade<Sucursal> getFacade() {
-        return sucursalFacade;
+    protected AbstractFacade<CaracteristicaAsiento> getFacade() {
+        return caracAsientoFacade;
     }
     
     
     @Override
-    public LazyDataModel<Sucursal> getModelo() {
+    public LazyDataModel<CaracteristicaAsiento> getModelo() {
         return super.getModelo(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Sucursal getRegistro() {
+    public CaracteristicaAsiento getRegistro() {
         if (this.registro == null) {
-            this.registro = new Sucursal();
+            this.registro = new CaracteristicaAsiento();
         }
         return super.getRegistro(); //To change body of generated methods, choose Tools | Templates.
     }

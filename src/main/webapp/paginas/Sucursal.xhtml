@@ -29,13 +29,13 @@
                     <p:column headerText="Activo">
                         <h:outputText value="#{s.activo?'Activo':'Inactivo'}"/>
                     </p:column>
-                <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da" oncomplete="PF('sucursal').show()"/>
+                <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da" oncomplete="PF('crud').show()"/>
                 <p:ajax event="rowUnselect" listener="#{sucursalBean.onRowDeselect}" update=":da"/>
                 </p:dataTable>
-                <p:commandButton value="Nuevo" oncomplete="PF('sucursal').show()"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('crud').show()"/>
         </h:form>
         
-        <p:dialog widgetVar="sucursal" modal="false" resizable="false" header="CRUD sucursales">
+        <p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD sucursales">
         <h:form id="da">
             
                 <p:panelGrid columns="2">
