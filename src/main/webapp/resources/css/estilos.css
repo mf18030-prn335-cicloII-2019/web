@@ -1,0 +1,23 @@
+/* 
+    Created on : 09-28-2019, 08:56:50 PM
+    Author     : rafael
+*/
+.creditos{
+    width: 100%;
+    text-align: right;
+    opacity: 0.5;
+}
+
+
+
+#indexImage{
+    position: absolute;
+    z-index:1; 
+    width:99%; 
+    height:100%;
+}
+
+.menu{
+    width: 100%;
+    font-weight: bold;
+}
