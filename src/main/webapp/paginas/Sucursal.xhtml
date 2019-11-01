@@ -9,10 +9,10 @@
     <ui:define name="content">
         <h1 align="center"> Sucursales</h1>
         <h:form id="Datos">
-            
-            <p:dataTable var="s" value="#{sucursalBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
-                         selectionMode="single" id="Genero" lazy="true" selection="#{sucursalBean.registro}" 
-                         rendered="#{not empty sucursalBean.modelo}">>
+            <h:panelGrid id="tabla" rendered="#{sucursalBean.estado!='NONE'}">                
+                <p:dataTable var="s" value="#{sucursalBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
+                             selectionMode="single" id="Genero" lazy="true" selection="#{sucursalBean.registro}" 
+                             rendered="#{not empty sucursalBean.modelo}">>
                     <p:column headerText="ID">
                         <h:outputText value="#{s.idSucursal}"/>
                     </p:column>
@@ -28,15 +28,16 @@
                     <p:column headerText="Activo">
                         <h:outputText value="#{s.activo?'Activo':'Inactivo'}"/>
                     </p:column>
-                <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da" oncomplete="PF('crud').show()"/>
-                <p:ajax event="rowUnselect" listener="#{sucursalBean.onRowDeselect}" update=":da"/>
+                    <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da Datos" oncomplete="PF('crud').show()"/>
+                    <p:ajax event="rowUnselect" listener="#{sucursalBean.onRowDeselect}" update=":da"/>
                 </p:dataTable>
-                <p:commandButton value="Nuevo" oncomplete="PF('crud').show()"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('crud').show()" update="Datos :da" actionListener="#{sucursalBean.btnNuevoHandler}"/>
+            </h:panelGrid>
         </h:form>
-        
+
         <p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD sucursales">
-        <h:form id="da">
-            
+            <h:form id="da">
+
                 <p:panelGrid columns="2">
                     <p:outputLabel value="ID" for="txtId"/>
                     <p:inputNumber id="txtId" value="#{sucursalBean.registro.idSucursal}" disabled="false" decimalPlaces="0" required="true"/>
@@ -50,7 +51,7 @@
                     <p:selectBooleanCheckbox id="chActivo" value="#{sucursalBean.registro.activo}"/>
                 </p:panelGrid>
                 <rs:AbstractButtons backingBean="#{sucursalBean}" idbackingBean="#{sucursalBean.registro.idSucursal}"/>
-                
+
             </h:form>
         </p:dialog>
     </ui:define>

@@ -9,13 +9,13 @@
     <cc:interface>
         <cc:attribute name="backingBean" required="true"/>
         <cc:attribute name="idbackingBean" required="true"/>
-        <cc:attribute name="update" default=":da, Datos"/>
+        <cc:attribute name="update" default=":da, :Datos"/>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:panelGroup id="botones">
-            <p:commandButton value="Crear" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backingBean.btnAgregarHandler}" oncomplete="PF('crud').hide()" />
+            <p:commandButton value="Crear" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backingBean.btnAgregarHandler}" oncomplete="PF('crud').hide()" rendered="#{cc.attrs.idbackingBean == null}"/>
             <p:commandButton value="Editar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backingBean.btnEditarHandler}" rendered="#{cc.attrs.idbackingBean != null}" oncomplete="PF('crud').hide()" />
             <p:commandButton value="Borrar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backingBean.btnEliminarHandler}" rendered="#{cc.attrs.idbackingBean != null}" oncomplete="PF('crud').hide()" />
             <p:commandButton value="Cancelar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backingBean.btnCancelarHandler}" oncomplete="PF('crud').hide()" />

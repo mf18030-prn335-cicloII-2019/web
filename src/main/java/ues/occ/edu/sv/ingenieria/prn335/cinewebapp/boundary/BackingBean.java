@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -27,6 +29,7 @@ public abstract class BackingBean<T> {
      public abstract Object clavePorDatos(T object);
 
     public abstract T datosPorClave(String rowKey);
+    protected String estado;
 
     protected abstract AbstractFacade<T> getFacade();
     List<T> List = new ArrayList<>();
@@ -35,6 +38,7 @@ public abstract class BackingBean<T> {
 
     public void iniciar() {
         Modelo();
+        estado = "on";
         if (getFacade().findAll() != null) {
             List = getFacade().findAll();
         } else {
@@ -46,6 +50,7 @@ public abstract class BackingBean<T> {
 
     public void onRowSelect(SelectEvent event) {
         registro = (T) event.getObject();
+        estado = "NONE";
     }
 
     public void onRowDeselect(UnselectEvent event) {
@@ -53,13 +58,14 @@ public abstract class BackingBean<T> {
     }
 
     public void btnCancelarHandler(ActionEvent ae) {
-        iniciar();
+        System.out.println("Hola");
+        iniciar();        
     }
 
     public void btnAgregarHandler(ActionEvent ae) {
         if (registro != null) {
             getFacade().create(registro);
-            iniciar();
+            iniciar();            
         }
     }
 
@@ -69,6 +75,11 @@ public abstract class BackingBean<T> {
             iniciar();
         }
     }
+    
+    public void btnNuevoHandler(ActionEvent ae){
+        estado = "NONE";
+    }
+    
 
     public void btnEliminarHandler(ActionEvent ae) {
         if (getFacade() != null && registro != null) {
@@ -134,5 +145,15 @@ public abstract class BackingBean<T> {
     public List<T> getList() {
         return List;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 }
 

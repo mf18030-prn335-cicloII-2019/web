@@ -9,7 +9,7 @@
     <ui:define name="content">
         <h1 align="center">Caracteristicas Asientos</h1>
         <h:form id="Datos">
-            
+            <h:panelGrid rendered="#{caracteristicaAsientoBean.estado!='NONE'}">                
             <p:dataTable var="ca" value="#{caracteristicaAsientoBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
                          selectionMode="single" id="Genero" lazy="true" selection="#{caracteristicaAsientoBean.registro}" 
                          rendered="#{not empty caracteristicaAsientoBean.modelo}">>
@@ -22,10 +22,11 @@
                     <p:column headerText="Descripcion">
                         <h:outputText value="#{ca.descripcion}"/>
                     </p:column>
-                <p:ajax event="rowSelect" listener="#{caracteristicaAsientoBean.onRowSelect}" update=":da" oncomplete="PF('crud').show()"/>
+                <p:ajax event="rowSelect" listener="#{caracteristicaAsientoBean.onRowSelect}" update=":da Datos" oncomplete="PF('crud').show()"/>
                 <p:ajax event="rowUnselect" listener="#{caracteristicaAsientoBean.onRowDeselect}" update=":da"/>
                 </p:dataTable>
-                <p:commandButton value="Nuevo" oncomplete="PF('crud').show()"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('crud').show()" update="Datos :da" actionListener="#{caracteristicaAsientoBean.btnNuevoHandler}"/>
+            </h:panelGrid>
         </h:form>
         
         <p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD carac.Asientos">
