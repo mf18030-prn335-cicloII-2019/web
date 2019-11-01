@@ -29,7 +29,7 @@
                     <p:column headerText="Activo">
                         <h:outputText value="#{s.activo?'Activo':'Inactivo'}"/>
                     </p:column>
-                <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da" />
+                <p:ajax event="rowSelect" listener="#{sucursalBean.onRowSelect}" update=":da" oncomplete="PF('sucursal').show()"/>
                 <p:ajax event="rowUnselect" listener="#{sucursalBean.onRowDeselect}" update=":da"/>
                 </p:dataTable>
                 <p:commandButton value="Nuevo" oncomplete="PF('sucursal').show()"/>

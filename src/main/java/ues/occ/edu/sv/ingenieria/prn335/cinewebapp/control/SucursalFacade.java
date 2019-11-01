@@ -17,7 +17,7 @@ import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal;
 @Stateless
 public class SucursalFacade extends AbstractFacade<Sucursal> {
 
-    @PersistenceContext(unitName = "my_persistence_unit")
+    @PersistenceContext(unitName = "cinePU")
     private EntityManager em;
 
     @Override

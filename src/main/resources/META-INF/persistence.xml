@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <!-- Define Persistence Unit -->
-  <persistence-unit name="my_persistence_unit" transaction-type="JTA">
+  <persistence-unit name="cinePU" transaction-type="JTA">
       <jta-data-source>jdbc/cine</jta-data-source>
     <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Pelicula</class>
     <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Orden</class>
@@ -28,6 +28,5 @@
     <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Boleto</class>
     <class>ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
   </persistence-unit>
 </persistence>
