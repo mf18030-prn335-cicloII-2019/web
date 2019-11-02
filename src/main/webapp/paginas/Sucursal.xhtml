@@ -9,7 +9,7 @@
     <ui:define name="content">
         <h1 align="center"> Sucursales</h1>
         <h:form id="Datos">
-            <h:panelGrid id="tabla" rendered="#{sucursalBean.estado!='NONE'}">                
+            <h:panelGrid id="tabla" rendered="#{sucursalBean.acciones=='NONE'}">                
                 <p:dataTable var="s" value="#{sucursalBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
                              selectionMode="single" id="Genero" lazy="true" selection="#{sucursalBean.registro}" 
                              rendered="#{not empty sucursalBean.modelo}">>
@@ -44,14 +44,15 @@
                     <p:outputLabel value="Nombre" for="txtNombre"/>
                     <p:inputText id="txtNombre" value="#{sucursalBean.registro.nombre}" required="true"/>
                     <p:outputLabel value="Direccion" for="txtDescripcion"/>
-                    <p:inputTextarea id="txtDescripcion" value="#{sucursalBean.registro.direccion}" required="true"/>
+                    <p:inputTextarea id="txtDescripcion" value="#{sucursalBean.registro.direccion}" />
                     <p:outputLabel value="Contacto" for="txtContacto"/>
-                    <p:inputText id="txtContacto" value="#{sucursalBean.registro.contacto}" required="true"/>
+                    <p:inputText id="txtContacto" value="#{sucursalBean.registro.contacto}" />
                     <p:outputLabel value="Activo" for="chActivo"/>
                     <p:selectBooleanCheckbox id="chActivo" value="#{sucursalBean.registro.activo}"/>
                 </p:panelGrid>
-                <rs:AbstractButtons backingBean="#{sucursalBean}" idbackingBean="#{sucursalBean.registro.idSucursal}"/>
-
+                <p:panelGrid columns="2" rendered="#{sucursalBean.acciones!='NONE'}">
+                <rs:AbstractButtons backingBean="#{sucursalBean}"/>
+                </p:panelGrid>
             </h:form>
         <!--/p:dialog-->
     </ui:define>

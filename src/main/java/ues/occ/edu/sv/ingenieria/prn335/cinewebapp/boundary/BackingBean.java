@@ -40,12 +40,14 @@ public abstract class BackingBean<T> {
     public void iniciar() {
         Modelo();
         estado = "on";
+        acciones = Estado.NONE;
+        System.out.println(acciones);
         if (getFacade().findAll() != null) {
             List = getFacade().findAll();
         } else {
             List = Collections.EMPTY_LIST;
         }
-        acciones = Estado.NONE;
+        
         this.modelo.setRowIndex(-1);
         registro = null;
     }
@@ -57,7 +59,7 @@ public abstract class BackingBean<T> {
     }
 
     public void onRowDeselect(UnselectEvent event) {
-      
+      this.acciones = Estado.NUEVO;
         this.modelo.setRowIndex(-1);
     }
 
