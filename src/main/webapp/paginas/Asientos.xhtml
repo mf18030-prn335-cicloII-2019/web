@@ -29,11 +29,11 @@
         
         <!--p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD Asientos" closable="false" draggable="false"-->
         <h:form id="da">
-            <p:tabView rendered="#{asientobean.acciones!='NONE'}">
-                <p:tab title="Detalle">
+            <p:tabView rendered="#{asientobean.acciones!='NONE'}" id="tab">
+                <p:tab title="Detalle" id="tab1">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Id" for="txtId" />
-                    <p:inputNumber id="txtId" value="#{asientobean.registro.idAsiento}" disabled="false" decimalPlaces="0" required="true"/>
+                    <p:inputNumber id="txtId" value="#{asientobean.registro.idAsiento}" disabled="false" decimalPlaces="0" />
                     <p:outputLabel value="Activo" for="chActi"/>
                     <p:selectBooleanCheckbox id="chActi" value="#{asientobean.registro.activo}" />
                                              
@@ -41,8 +41,33 @@
                 </p:panelGrid>
                
                 </p:tab>
-                <p:tab title="Atributos" >
+                <p:tab title="Atributos" id="tab2">
+                   <h:panelGrid  id="panelgrid1">
+                            <p:dataTable value="#{atributoAsientoBean.modelo}" var="atr" paginator="true" rows="5" paginatorPosition="bottom"
+                                         selectionMode="single" selection="#{atributoAsientoBean.registro}" lazy="true" rendered="#{not empty atributoAsientoBean.modelo}">
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{atr.caracteristicaAsiento.idCaracteristica}"/>
+                                </p:column>
+                                <p:column headerText="Característica">
+                                    <h:outputText value="#{atr.caracteristicaAsiento.caracteristica}"/>
+                                </p:column>
+                                <p:column headerText="Valor">
+                                    <h:outputText value="#{atr.valor}"/>
+                                </p:column>
+                                <p:ajax event="rowSelect" listener="#{atributoAsientoBean.onRowSelect}" update=":da:tab:tab2" />
+                                <p:ajax event="rowUnselect" listener="#{atributoAsientoBean.onRowDeselect}" update=":da"/>
+                            </p:dataTable>
+                       <p:commandButton value="Nuevo" update="Datos :da" actionListener="#{asientobean.btnNuevoHandler}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" rendered="#{atributoAsientoBean.formularioTab=='activo'}" id="panelgrid2">
+                            <p:outputLabel value="ID" for="txtId2"/>
+                            <p:inputNumber id="txtId2" value="#{asientobean.registro.idAsiento}" disabled="false" decimalPlaces="0" />
+                            <p:outputLabel value="Activo" for="chActivo2"/>
+                            <p:selectBooleanCheckbox id="chActivo2" value="#{asientobean.registro.activo}"/>
+                       <rs:AbstractButtons backingBean="#{asientobean}" />
+                        </h:panelGrid>
                     
+                     
                 </p:tab>
             </p:tabView>
                 
