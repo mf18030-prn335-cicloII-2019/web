@@ -35,7 +35,7 @@ public abstract class BackingBean<T> {
     List<T> List = new ArrayList<>();
     protected T registro;
     protected LazyDataModel<T> modelo;
-
+   
     public void iniciar() {
         Modelo();
         estado = "on";
@@ -54,7 +54,7 @@ public abstract class BackingBean<T> {
     }
 
     public void onRowDeselect(UnselectEvent event) {
-        this.modelo.setRowIndex(-1);
+       this.modelo.setRowIndex(-1);
     }
 
     public void btnCancelarHandler(ActionEvent ae) {
@@ -80,7 +80,7 @@ public abstract class BackingBean<T> {
         estado = "NONE";
     }
     
-
+   
     public void btnEliminarHandler(ActionEvent ae) {
         if (getFacade() != null && registro != null) {
             try {
@@ -153,7 +153,7 @@ public abstract class BackingBean<T> {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     
 }
 
