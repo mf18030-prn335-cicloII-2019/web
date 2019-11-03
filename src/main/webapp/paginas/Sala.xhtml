@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                template="/resources/template/pagesTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:rs="http://xmlns.jcp.org/jsf/composite/components">                
+    <ui:define name="title">Pelicula</ui:define>
+    <ui:define name="content">
+        <h1 align="center"> Sala</h1>
+        <h:form id="Datos">
+            <h:panelGrid id="tabla" rendered="#{salabean.acciones=='NADA'}">                
+                <p:dataTable var="sa" value="#{salabean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
+                             selectionMode="single" id="Genero" lazy="true" selection="#{salabean.registro}" 
+                             rowKey="#{sa.idSala}"  rendered="#{not empty salabean.modelo}">>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{sa.idSala}"/>
+                    </p:column>
+                    <p:column headerText="Sala">
+                        <h:outputText value="#{sa.sala}"/>
+                    </p:column>
+                    <p:column headerText="Sucursal">
+                        <h:outputText value="#{sa.idSucursal.nombre}"/>
+                    </p:column>
+                    <p:ajax event="rowSelect" listener="#{salabean.onRowSelect}" update="Datos :da :da:tab"/>
+                    <p:ajax event="rowUnselect" listener="#{salabean.onRowDeselect}" update=":da"/>
+                </p:dataTable>
+                <p:commandButton value="Nuevo" update=":da :Datos" actionListener="#{salabean.btnNuevoHandler}"/>
+            </h:panelGrid>
+        </h:form>
+
+        <!--p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD sucursales"-->
+            <h:form id="da">
+
+                <p:tabView rendered="#{salabean.acciones!='NADA'}" id="tab">
+                <p:tab title="Detalle" id="tab1">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Id" for="txtId" />
+                    <p:inputNumber id="txtId" value="#{salabean.registro.idSala}" disabled="#{salabean.acciones!='NUEVO'}" decimalPlaces="0" />
+                    <p:outputLabel value="Sala" for="txtSala"/>
+                    <p:inputText id="txtSala" value="#{salabean.registro.sala}" disabled="#{salabean.acciones=='OTHER'}"/>
+                    <p:outputLabel value="Sucursal" for="cbSucurs"/>
+                    <p:selectOneMenu id="cbSucurs" value="#{salabean.nome}" disabled="#{salabean.acciones=='OTHER'}">
+                        <f:selectItem  itemLabel="Select One" itemValue=""/>
+                        <f:selectItems value="#{salabean.sala}" var="su" itemValue="#{su}" />
+                    </p:selectOneMenu>
+                    <rs:AbstractButtons backingBean="#{salabean}" update="da :Datos"/>
+                </p:panelGrid>
+               
+                </p:tab>
+                <p:tab title="Asientos" id="tab2">
+                
+                </p:tab>
+            </p:tabView>
+            </h:form>
+        <!--/p:dialog-->
+    </ui:define>
+</ui:composition>
+

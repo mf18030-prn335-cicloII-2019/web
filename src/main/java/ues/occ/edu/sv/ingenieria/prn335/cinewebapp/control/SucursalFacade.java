@@ -8,6 +8,7 @@ package ues.occ.edu.sv.ingenieria.prn335.cinewebapp.control;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import ues.occ.edu.sv.ingenieria.prn335.cinewebapp.entity.Sucursal;
 
 /**
@@ -27,6 +28,13 @@ public class SucursalFacade extends AbstractFacade<Sucursal> {
 
     public SucursalFacade() {
         super(Sucursal.class);
+    }
+
+
+    public Integer sucursalNome(String nome){
+        Query query = em.createNamedQuery("Sucursal.findByIdNombre");
+        query.setParameter("nombre", nome);
+        return Integer.valueOf(query.getSingleResult().toString());
     }
     
 }
