@@ -40,7 +40,7 @@ public abstract class BackingBean<T> {
     public void iniciar() {
         Modelo();
         estado = "on";
-        acciones = Estado.NONE;
+        acciones = Estado.NADA;
         System.out.println(acciones);
         if (getFacade().findAll() != null) {
             List = getFacade().findAll();
@@ -54,7 +54,7 @@ public abstract class BackingBean<T> {
 
     public void onRowSelect(SelectEvent event) {
         registro = (T) event.getObject();
-        this.acciones = Estado.EDITAR;
+        this.acciones = Estado.OTHER;
         estado = "NONE";
     }
 
@@ -66,7 +66,7 @@ public abstract class BackingBean<T> {
     public void btnCancelarHandler(ActionEvent ae) {
         System.out.println("Hola");
         iniciar();        
-        this.acciones = Estado.NONE;
+        this.acciones = Estado.NADA;
     }
 
     public void btnAgregarHandler(ActionEvent ae) {

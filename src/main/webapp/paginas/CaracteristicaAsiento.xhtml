@@ -9,7 +9,7 @@
     <ui:define name="content">
         <h1 align="center">Caracteristicas Asientos</h1>
         <h:form id="Datos">
-            <h:panelGrid rendered="#{caracteristicaAsientoBean.acciones=='NONE'}">                
+            <h:panelGrid rendered="#{caracteristicaAsientoBean.acciones=='NADA'}">                
             <p:dataTable var="ca" value="#{caracteristicaAsientoBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
                          selectionMode="single" id="Genero" lazy="true" selection="#{caracteristicaAsientoBean.registro}" 
                          rendered="#{not empty caracteristicaAsientoBean.modelo}">>
@@ -32,7 +32,7 @@
         <!--p:dialog widgetVar="crud" modal="false" resizable="false" header="CRUD carac.Asientos"-->
         <h:form id="da">
             
-            <p:panelGrid columns="2" rendered="#{caracteristicaAsientoBean.acciones!='NONE'}">
+            <p:panelGrid columns="2" rendered="#{caracteristicaAsientoBean.acciones!='NADA'}">
                     <p:outputLabel value="ID" for="txtId"/>
                     <p:inputNumber id="txtId" value="#{caracteristicaAsientoBean.registro.idCaracteristica}" disabled="false" decimalPlaces="0" required="true"/>
                     <p:outputLabel value="Caracteristica" for="txtCaracteristica"/>
@@ -40,7 +40,7 @@
                     <p:outputLabel value="Descripcion" for="txtDescripcion"/>
                     <p:inputTextarea id="txtDescripcion" value="#{caracteristicaAsientoBean.registro.descripcion}" />
                 </p:panelGrid>
-            <p:panelGrid columns="2" rendered="#{caracteristicaAsientoBean.acciones!='NONE'}">
+            <p:panelGrid columns="2" rendered="#{caracteristicaAsientoBean.acciones!='NADA'}">
             <rs:AbstractButtons backingBean="#{caracteristicaAsientoBean}" />
             </p:panelGrid>  
             </h:form>

@@ -10,5 +10,5 @@ package ues.occ.edu.sv.ingenieria.prn335.cinewebapp.boundary;
  * @author Vladimir
  */
 public enum Estado {
-    NONE, EDITAR, ELIMINAR, NUEVO;
+    NADA, EDITAR, ELIMINAR, NUEVO,OTHER;
 }
